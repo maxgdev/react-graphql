@@ -1,6 +1,11 @@
-const SearchBox = () => {
-    let  queryString = "search";
-    let pageCount = 2;
+const SearchBox = ({
+  totalCount,
+  pageCount,
+  queryString,
+  onTotalchange,
+  onQueryChange,
+}) => {
+  
     return (
       <div className="d-flex align-items-center bg-light px-3 py-2 small rounded-3">
         <div className="d-flex align-items-center flex-grow-1">
@@ -12,6 +17,9 @@ const SearchBox = () => {
             className="form-control form-control-sm me-2"
             type="text"
             value={queryString}
+            onChange={(event)=> {
+              onQueryChange(event.target.value)
+            }}
           />
         </div>
         <div className="d-flex align-items-center">
@@ -25,11 +33,14 @@ const SearchBox = () => {
             min="1"
             max="100"
             value={pageCount}
+            onChange={(event)=>{
+              onTotalchange(event.target.value)
+            }}
           />
         </div>
         <div>
           <b className="me-2 text-secondary">Total:</b>
-          2
+          {totalCount}
         </div>
       </div>
     );
