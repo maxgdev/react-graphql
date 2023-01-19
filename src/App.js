@@ -64,10 +64,8 @@ function App() {
       <>
         {repoList && (
           <ul className="list-group list-group-flush">
-            {repoList.map((repo)=> (
-              <RepoInfo repo={repo} />
-              // <p>{JSON.stringify(repo)}</p>
-
+            {repoList.map((repoItem)=> (
+              <RepoInfo key={repoItem.node.id} repo={repoItem.node} />
             ))}
           </ul>
         )}
