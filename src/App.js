@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import NavButtons from "./NavButtons";
 import SearchBox from "./SearchBox";
+import RepoInfo from "./RepoInfo";
 import query from "./Query";
 import github from "./gitDB"
 
@@ -45,7 +46,6 @@ function App() {
         setUserName(viewer.name);
         setRepoList(repos);
         setTotalCount(total);
-
         setStartCursor(start);
         setEndCursor(end);
         setHasNextPage(next);
@@ -65,7 +65,9 @@ function App() {
         {repoList && (
           <ul className="list-group list-group-flush">
             {repoList.map((repo)=> (
-              <p>{JSON.stringify(repo)}</p>
+              <RepoInfo repo={repo} />
+              // <p>{JSON.stringify(repo)}</p>
+
             ))}
           </ul>
         )}
@@ -83,8 +85,8 @@ function App() {
         totalCount={totalCount}
         pageCount={pageCount}
         queryString={queryString}
-        onTotalchange={(myNumber) => { setPageCOunt(myNumber) }}
-        onQueryChange={(myString) => { setQueryString(myString) }}
+        onTotalchange={(totalChangeNumber) => { setPageCOunt(totalChangeNumber) }}
+        onQueryChange={(queryString) => { setQueryString(queryString) }}
       />
       <DisplayRepo />
       <NavButtons />
