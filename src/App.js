@@ -10,7 +10,7 @@ function App() {
   const [repoList, setRepoList] = useState(null);
   const [pageCount, setPageCOunt] = useState(10);
   const [queryString, setQueryString] = useState("");
-  const [totalCount, setTotalCount] = useState(5);
+  const [totalCount, setTotalCount] = useState(null);
 
   const [startCursor, setStartCursor] = useState(null);
   const [endCursor, setEndCursor] = useState(null);
@@ -73,6 +73,7 @@ function App() {
     )
   }
 
+
   return (
     <div className="App container mt-5">
       <h1 className="text-primary">
@@ -86,8 +87,19 @@ function App() {
         onTotalchange={(totalChangeNumber) => { setPageCOunt(totalChangeNumber) }}
         onQueryChange={(queryString) => { setQueryString(queryString) }}
       />
+
       <DisplayRepo />
-      <NavButtons />
+
+      <NavButtons 
+        start={startCursor}
+        end={endCursor}
+        next={hasNextPage}
+        previous={hasPreviousPage}
+        onPage={(myKeyword, myString) => {
+          setPaginationKeyword(myKeyword);
+          setPaginationString(myString);
+        }}
+      />
     </div>
   );
 }
