@@ -6,7 +6,7 @@ import query from "./Query";
 import github from "./gitDB"
 
 function App() {
-  const [userName, setUserName] = useState("Max");
+  const [userName, setUserName] = useState("");
   const [repoList, setRepoList] = useState(null);
   const [pageCount, setPageCOunt] = useState(10);
   const [queryString, setQueryString] = useState("");
